@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    padding: 0;
+    background-color:darkgray;
+}
+
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: minmax(100px, auto) repeat(5, 80px);
+}
+
+.display {
+    grid-column: 1 / -1;
+    background-color: black;
+}
+
+#zero {
+    grid-column: span 2;
+}
