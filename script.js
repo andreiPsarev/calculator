@@ -11,6 +11,15 @@ function updateDisplay() {
     display.innerHTML = displayValue;
 }
 
+function clearDisplay() {
+    displayValue = '0';
+    firstOperand = null;
+    secondOperand = null;
+    firstOperator = null;
+    secondOperator = null;
+    result = null;
+}
+
 function clickButton () {
     for (let i = 0; i < buttons.length; i ++) {
         buttons[i].addEventListener("click", function(){
@@ -68,6 +77,22 @@ function inputOperand(operand) {
 }
 
 function inputOperator(operator) {
+
+    if(firstOperator != null && secondOperator === null) {
+        secondOperator = operator;
+        secondOperand = displayValue;
+        result = calculate(firstOperator, Number(firstOperand), Number(secondOperand));
+        displayValue = result;
+        firstOperand = displayValue;
+        result = null;
+    }
+    else if (firstOperator != null && secondOperator != null) {
+        result = calculate(firstOperator, Number(firstOperand), Number(secondOperand));
+        displayValue = result;
+        firstOperand =displayValue;
+        result = null;
+    }
+
     if (firstOperator != null && secondOperator === null){
 
     }
@@ -79,7 +104,7 @@ function inputOperator(operator) {
 
 function inputEquals() {
     secondOperand = displayValue;
-    result = operate(firstOperator, Number(firstOperand), Number(secondOperand))
+    result = calculate(firstOperator, Number(firstOperand), Number(secondOperand))
     displayValue = result;
     firstOperand = displayValue;
     secondOperand = null;
@@ -88,6 +113,19 @@ function inputEquals() {
     result = null;
 }
 
+function inputDecimal(dot) {
+    if (!displayValue.includes(dot)) {
+        displayValue += dot;
+    }
+}
+
+function inputPercent(num) {
+    displayValue = num/100;
+}
+
+function inputSign(num) {
+    displayValue = -1 * num;
+}
 
 
 function addFunc(a, b) {
@@ -106,7 +144,7 @@ function divFunc(a, b) {
     return a / b;
 }
 
-function operate(operation, a, b) {
+function calculate(operation, a, b) {
     switch(operation) {
         case '+':
             return addFunc(a, b);
@@ -122,33 +160,3 @@ function operate(operation, a, b) {
 }
 
 
-console.log(addFunc(4, 5));
-console.log(subFunc(4, 5));
-console.log(multFunc(4, 5));
-console.log(divFunc(4, 5));
-
-let exmpl = operate('+', 2, 11);
-console.log(exmpl);
-
-/*
-const buttonsClick = document.querySelectorAll("button");
-const result = document.querySelector("#display");
-result.textContent = "";
-
-
-buttonsClick.forEach(button => {
-    button.addEventListener("click", function(){
-        console.log("button clicked");
-        result.textContent += button.value;
-    });
-});*/
-
-
-function clearDisplay() {
-    displayValue = '0';
-    firstOperand = null;
-    secondOperand = null;
-    firstOperator = null;
-    secondOperator = null;
-    result = null;
-}

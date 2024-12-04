@@ -4,11 +4,11 @@
     background-color:darkgray;
 }
 
-
 .calc {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 150px;
 }
 
 .container {
@@ -17,6 +17,7 @@
     grid-template-rows: minmax(100px, auto) repeat(5, 80px);
     background-color: black;
     border: 10px solid rgba(47,47,47,1);
+    border-radius: 3%;
     gap: 2px;
 }
 
@@ -29,6 +30,7 @@
     justify-content: space-around;
     align-items: flex-end;
     font-size: 5.5em;
+    font-family: 'Lucida Console', Monaco, monospace;
     padding: 5px;
     margin: 5px;
 }
@@ -46,17 +48,17 @@ button {
     margin: 1px;
 }
 
-.operand {
+.operand, .decimal {
     background-color: #0f766e;
 }
-.operand:active {
+.operand:active, .decimal:active {
     background-color: #4fb6b0;
 }
 
-.operator {
+.operator, .equals {
     background-color: #d97706;
 }
-.operator:active {
+.operator:active, .equals:active {
     background-color: #f2b04a;
 }
 
